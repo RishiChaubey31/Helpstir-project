@@ -12,31 +12,33 @@ const TaskList = ({ tasks, updateTask, markTaskAsDone }) => {
   };
 
   return (
-    <ul>
+    <ul className="task-list">
       {tasks.map((task) => (
-        <li key={task.id}>
+        <li key={task.id} className={task.completed ? 'completed' : ''}>
           <div onClick={() => setExpandedTaskId(task.id === expandedTaskId ? null : task.id)}>
             {task.description} - {task.completed ? 'Completed' : 'Pending'}
           </div>
           {expandedTaskId === task.id && (
-            <div>
+            <div className="task-details">
               <p>Description: {task.description}</p>
               <p>Last updated: {task.updatedAt.toString()}</p>
-              <button onClick={() => setEditingTaskId(task.id)}>Edit</button>
-              {editingTaskId === task.id && (
-                <div>
-                  <input
-                    type="text"
-                    value={newDescription}
-                    onChange={(e) => setNewDescription(e.target.value)}
-                    placeholder="New description"
-                  />
-                  <button onClick={() => handleUpdate(task.id)}>Update</button>
-                </div>
-              )}
-              <button onClick={() => markTaskAsDone(task.id)}>
-                {task.completed ? 'Undo' : 'Mark as Done'}
-              </button>
+              <div className="task-actions">
+                <button onClick={() => setEditingTaskId(task.id)}>Edit</button>
+                {editingTaskId === task.id && (
+                  <div>
+                    <input
+                      type="text"
+                      value={newDescription}
+                      onChange={(e) => setNewDescription(e.target.value)}
+                      placeholder="New description"
+                    />
+                    <button onClick={() => handleUpdate(task.id)}>Update</button>
+                  </div>
+                )}
+                <button onClick={() => markTaskAsDone(task.id)}>
+                  {task.completed ? 'Undo' : 'Mark as Done'}
+                </button>
+              </div>
             </div>
           )}
         </li>

@@ -5,8 +5,10 @@ const AddTask = ({ addTask }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTask(description);
-    setDescription('');
+    if (description.trim()) {
+      addTask(description);
+      setDescription('');
+    }
   };
 
   return (

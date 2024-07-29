@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskList from './components/TaskList';
 import AddTask from './components/AddTask';
 import SearchTasks from './components/SearchTasks';
 
 const TaskManager = () => {
-  const [tasks, setTasks] = useState([
-    // { id: 1, description: 'Sample Task 1', completed: false, updatedAt: new Date() },
-    // { id: 2, description: 'Sample Task 2', completed: false, updatedAt: new Date() },
-  ]);
+  const [tasks, setTasks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    setTasks(savedTasks);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = (description) => {
     const newTask = {
@@ -39,7 +45,8 @@ const TaskManager = () => {
   );
 
   return (
-    <div>
+    <div className="container">
+      <h1>Task Manager</h1>
       <AddTask addTask={addTask} />
       <SearchTasks setSearchTerm={setSearchTerm} />
       <TaskList tasks={filteredTasks} updateTask={updateTask} markTaskAsDone={markTaskAsDone} />
