@@ -1,6 +1,6 @@
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #4929cc;
+  font-family: 'cursive','Arial', sans-serif;
+  background-color: #094e24;
   margin: 0;
   padding: 20px;
   display: flex;
@@ -10,19 +10,19 @@ body {
 }
 
 .container {
-  background-color: #9b9abd;
+  background-color: #80ca7d;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 10px 10px rgba(226, 222, 222, 0.788);
+  box-shadow: 0 10px 20px rgb(255, 255, 255);
   max-width: 500px;
   width: 100%;
+  font-family: cursive;
 }
 
 h1 {
   text-align: center;
-  color: #4929cc;
-  text-decoration: underline;
-  font-family: cursive;
+  color:  #094e24;
+  text-decoration:underline;
 }
 
 form {
@@ -38,14 +38,13 @@ input[type="text"] {
   border-radius: 4px;
   flex-grow: 1;
   margin-right: 10px;
-  font-family: cursive;
 }
 
 button {
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
-  background-color: #3a0a81;
+  background-color: #3b1fa1d1;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -53,13 +52,12 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color:  #094e24;
 }
 
 .task-list {
   list-style-type: none;
   padding: 0;
-  font-family: cursive;
 }
 
 .task-list li {
@@ -96,6 +94,14 @@ button:hover {
 .task-list li.completed {
   text-decoration: line-through;
   color: #888;
+}
+
+.task-list li:not(.completed) {
+  cursor: pointer;
+}
+
+.task-list li:not(.completed):hover {
+  background-color: #e0f7fa;
 }
 
 .task-details p {
